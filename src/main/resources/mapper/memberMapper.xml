@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.shop.login.MemberMapper">
+
+	<!-- 회원가입 -->
+	<insert id="join" parameterType="com.spring.shop.login.MemberVO">
+		insert into member_info (
+		mi_id,
+		mi_pw,
+		mi_addr,
+		mi_name
+		)values(
+		#{mi_id},
+		#{mi_pw},
+		#{mi_addr},
+		#{mi_name}
+		)
+	</insert>
+
+	<!-- 로그인 -->
+	<select id="signin" resultType="com.spring.shop.login.MemberVO">
+		select *
+		from member_info
+		where mi_id = #{mi_id}
+		and mi_pw = #{mi_pw}
+
+	</select>
+
+	<!-- 회원정보조회 -->
+	<select id="member" resultType="com.spring.shop.login.MemberVO">
+		select * from member_info
+		where mi_id = #{mi_id}
+
+	</select>
+
+	<!-- 회원정보수정 -->
+	<update id="memberUpdate" parameterType="com.spring.shop.login.MemberVO">
+		update member_info
+		set mi_pw = #{mi_pw}, mi_addr = #{mi_addr}, mi_name = #{mi_name}
+		where mi_id = #{mi_id}
+
+	</update>
+
+	<!-- 회원탈퇴 -->
+	<delete id="deleteMember" parameterType="com.spring.shop.login.MemberVO">
+		delete from member_info
+		where mi_id = #{mi_id}
+		 
+	</delete>
+
+</mapper>
